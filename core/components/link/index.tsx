@@ -7,6 +7,8 @@ import { cn } from '~/lib/utils';
 
 import { Link as NavLink, useRouter } from '../../i18n/routing';
 
+import { defaultLocale } from '~/i18n/routing';
+
 type NextLinkProps = Omit<ComponentPropsWithRef<typeof NavLink>, 'prefetch'>;
 
 interface PrefetchOptions {
@@ -34,8 +36,11 @@ export const Link = forwardRef<ComponentRef<'a'>, Props>(
     const router = useRouter();
     const [prefetched, setPrefetched] = useReducer(() => true, false);
     const computedPrefetch = computePrefetchProp({ prefetch, prefetchKind });
-    const defaultLocale = useLocale();
-    const finalLocale = locale || defaultLocale;
+    const currentLocale = useLocale();
+    
+    const finalLocale = locale && locale !== defaultLocale ? locale : 
+                       currentLocale !== defaultLocale ? currentLocale : 
+                       undefined;
 
     const triggerPrefetch = () => {
       if (prefetched) {
