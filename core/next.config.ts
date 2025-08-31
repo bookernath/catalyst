@@ -64,7 +64,7 @@ export default async (): Promise<NextConfig> => {
     reactStrictMode: true,
     experimental: {
       optimizePackageImports: ['@icons-pack/react-simple-icons'],
-      ppr: 'incremental',
+      // ppr: 'incremental',
     },
     typescript: {
       ignoreBuildErrors: !!process.env.CI,
