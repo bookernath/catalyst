@@ -6,7 +6,7 @@ import { client } from '~/client';
 
 import { type ProxyFactory } from './compose-proxies';
 
-const ALLOWED_REQUESTERS = ['checkout-sdk-js'];
+const ALLOWED_REQUESTERS = ['checkout-sdk-js', 'webmcp-tools'];
 const graphqlPathPattern = new URLPattern({ pathname: '/graphql' });
 
 const bodySchema = z.object({
